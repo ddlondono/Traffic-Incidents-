@@ -19,13 +19,13 @@ year             INT,
 month            INT,
 month_name       CHAR(10),
 day_of_month     INT,
-day              CHAR(10),
+day_name         CHAR(10),
 day_of_week      INT,
 UNIQUE KEY `date` (`date`));
 
 -- First populate with ids and Date
 -- Change year start and end to match your needs. The above sql creates records for year 2010.
-INSERT INTO date_d (date)
+INSERT INTO date_dim (date)
 SELECT number, DATE_ADD( '2016-01-01', INTERVAL number DAY )
 FROM numbers
 WHERE DATE_ADD( '2016-01-01', INTERVAL number DAY ) BETWEEN '2016-01-01' AND '2019-12-31'
@@ -37,6 +37,6 @@ year            = DATE_FORMAT( date, "%Y" ),
 month           = DATE_FORMAT( date, "%m"),
 month_name      = DATE_FORMAT( date, "%M"),
 day_of_month    = DATE_FORMAT( date, "%d" ),
-day             = DATE_FORMAT( date, "%W" ),
+day_name        = DATE_FORMAT( date, "%W" ),
 day_of_week     = DAYOFWEEK(date);
 
